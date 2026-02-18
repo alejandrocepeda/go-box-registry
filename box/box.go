@@ -1,13 +1,18 @@
 package box
 
-import "context"
+import "reflect"
 
 type Result struct {
-	Output   any    `json:"output"`
-	NewEvent string `json:"new_event,omitempty"`
+	Output   map[string]any `json:"output"`
+	NewEvent string         `json:"new_event,omitempty"`
 }
 
-type Box interface {
-	ID() string
-	Execute(ctx context.Context, input any) (Result, error)
+type Executor interface {
+	Dependencies() []reflect.Type
+	Apply(deps []any) (Result, error)
+}
+
+type Box struct {
+	ID string
+	Executor
 }
