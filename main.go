@@ -22,9 +22,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	authorizeResult, err := authorizeBox.Apply([]any{
+	authorizeResult, err := authorizeBox.Apply(box.NewDeps(
 		deps.Job{ID: "JOB-001"},
-	})
+	))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -39,9 +39,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	captureResult, err := captureBox.Apply([]any{
+	captureResult, err := captureBox.Apply(box.NewDeps(
 		deps.Job{ID: "JOB-001"},
-	})
+	))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -55,9 +55,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	storeDBResult, err := storeDBBox.Apply([]any{
+	storeDBResult, err := storeDBBox.Apply(box.NewDeps(
 		deps.DB{URL: "postgres://localhost/payments"},
-	})
+	))
 	if err != nil {
 		log.Fatal(err)
 	}

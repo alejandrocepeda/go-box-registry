@@ -21,8 +21,8 @@ func (b Box) Dependencies() []reflect.Type {
 	}
 }
 
-func (b Box) Apply(d []any) (box.Result, error) {
-	job := d[0].(deps.Job)
+func (b Box) Apply(d box.Deps) (box.Result, error) {
+	job := box.Get[deps.Job](d)
 
 	fmt.Printf("Capturing using job %s\n", job)
 

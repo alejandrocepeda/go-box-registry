@@ -21,9 +21,8 @@ func (b Box) Dependencies() []reflect.Type {
 	}
 }
 
-func (b Box) Apply(d []any) (box.Result, error) {
-
-	db := d[0].(deps.DB)
+func (b Box) Apply(d box.Deps) (box.Result, error) {
+	db := box.Get[deps.DB](d)
 
 	fmt.Printf("Store using DB at %s\n", db)
 
